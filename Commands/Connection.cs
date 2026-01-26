@@ -43,7 +43,7 @@ namespace Commands
                 Console.WriteLine("Init");
             }
             oClient.OnMessageReceived += Client_OnChatMessageReceived;
-            oClient.OnChatCommandReceived += Client_OnChatCommandReceivedAsync;
+            oClient.OnChatCommandReceived += read.Client_OnChatCommandReceivedAsync;
             Console.WriteLine("Test4");
         }
 
@@ -65,25 +65,8 @@ namespace Commands
             await oClient.SendMessageAsync(sTwitchChannel, "SCHALOM LE BOWSER");
         }
 
-        private async Task Client_OnChatMessageReceived(object? sender, OnMessageReceivedArgs e)
-        {
+        private async Task Client_OnChatMessageReceived(object? sender, OnMessageReceivedArgs e) {
             Console.WriteLine($"{e.ChatMessage.Username}#{e.ChatMessage.Channel}: {e.ChatMessage.Message}");
-        }
-
-        public static async Task Client_OnChatCommandReceivedAsync(object? oSender, OnChatCommandReceivedArgs oOnChatCommandReceivedArgs) {
-            string sChannel = oOnChatCommandReceivedArgs.ChatMessage.Channel;
-            var sCommand = oOnChatCommandReceivedArgs.Command;
-
-            try {
-                switch (sCommand.Name.ToLower()) {
-                    case "help":
-                        Console.WriteLine("Test3");
-                        await oClient.SendMessageAsync(sChannel, "Hier ist noch nichts vorhanden");
-                        break;
-                }
-            } catch (Exception e) {
-                Console.WriteLine(e);
-            }
         }
     }
 }
