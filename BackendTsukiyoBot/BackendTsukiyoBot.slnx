@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../Commands/Commands.csproj" Id="8720f795-b119-4ac4-b983-a4abe14f5f09" />
+  <Project Path="../Entities/Entities.csproj" />
+  <Project Path="BackendTsukiyoBot.csproj" />
+</Solution>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FrontendTsukiyoBot.Client/FrontendTsukiyoBot.Client.csproj" />
+  <Project Path="FrontendTsukiyoBot/FrontendTsukiyoBot.csproj" />
+</Solution>
