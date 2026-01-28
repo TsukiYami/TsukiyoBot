@@ -33,6 +33,9 @@ namespace Commands
                             Console.WriteLine($"List Elements: {sItem}");
                         }
                         break;
+                    case "lurk":
+                        await Connection.oClient.SendMessageAsync(sChannel, "Hey, vielen Dank für dein Lurk! :3");
+                        break;
                     default:
                         Console.WriteLine("Unknown command");
                         break;
