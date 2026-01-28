@@ -2,10 +2,18 @@
 {
     public class RankDefinitionEntity
     {
-        public Guid oRankDefinitionID { get; set; }
-        public Guid oScopeID { get; set; }
-        public ulong nRequired_XP { get; set; }
-        public ulong nXPPerMessage { get; set; }
-        public string sXPRank { get; set; }
+        public Guid oRankDefinitionID { get; init; }
+        public Guid oScopeID { get; init; }
+        public ulong nRequired_XP { get; init; }
+        public ulong nXPPerMessage { get; init; }
+        public string sXPRank { get; init; }
+
+		public RankDefinitionEntity (Guid oRankDefinitionID, Guid oScopeID, ulong nRequired_XP, ulong nXPPerMessage, string sXPRank) {
+			this.oRankDefinitionID = oRankDefinitionID;
+			this.oScopeID = oScopeID;
+			this.nRequired_XP = nRequired_XP;
+			this.nXPPerMessage = nXPPerMessage;
+			this.sXPRank = sXPRank;
+		}
     }
 }
