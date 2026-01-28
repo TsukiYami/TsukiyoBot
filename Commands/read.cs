@@ -1,5 +1,4 @@
 ﻿using TwitchLib.Client.Events;
-using TwitchLib.Communication.Interfaces;
 
 namespace Commands
 {
@@ -8,8 +7,9 @@ namespace Commands
         public static async Task Client_OnChatCommandReceivedAsync(object? oSender, OnChatCommandReceivedArgs oOnChatCommandReceivedArgs)
         {
             string sChannel = oOnChatCommandReceivedArgs.ChatMessage.Channel;
+            string sID = oOnChatCommandReceivedArgs.ChatMessage.Id;
             var sCommand = oOnChatCommandReceivedArgs.Command;
-            List<string> vsCommands = new List<string>();
+            List<string> vsCommands = new List<string>() { "0" };
             int nCounter = 5;
             int nTimerInSeconds;
 
@@ -32,11 +32,18 @@ namespace Commands
                         {
                             Console.WriteLine($"List Elements: {sItem}");
                         }
+                        int.TryParse(vsCommands[0], out nTimerInSeconds);
+
+                        Console.WriteLine($"Timer: {nTimerInSeconds}");
                         break;
                     case "lurk":
-                        await Connection.oClient.SendMessageAsync(sChannel, "Hey, vielen Dank für dein Lurk! :3");
+                        await Connection.oClient.SendReplyAsync(sChannel, sID, "Hey, vielen Dank für dein Lurk! :3");
+                        break;
+                    case "dc":
+                        await Connection.oClient.SendReplyAsync(sChannel, sID, "Klicke auf den Link um den Discord zu joinen :D \n https://discord.gg/ZnwzVv34jr");
                         break;
                     default:
+                        await Connection.oClient.SendReplyAsync("tsukiyamix", sID, "Unknown Command");
                         Console.WriteLine("Unknown command");
                         break;
                 }
