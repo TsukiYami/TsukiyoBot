@@ -9,8 +9,9 @@ namespace Commands
         {
             string sChannel = oOnChatCommandReceivedArgs.ChatMessage.Channel;
             var sCommand = oOnChatCommandReceivedArgs.Command;
+            List<string> vsCommands = new List<string>();
             int nCounter = 5;
-            const string sAddModName = "ShiroKitsuneLP";
+            int nTimerInSeconds;
 
             try
             {
@@ -20,14 +21,20 @@ namespace Commands
                         Console.WriteLine("Test3");
                         await Connection.oClient.SendMessageAsync(sChannel, "Hier ist noch nichts vorhanden");
                         break;
-                    case "death":
+                    case "counter":
                         Console.WriteLine("Counter um 1 erhöht");
                         nCounter++;
                         await Connection.oClient.SendMessageAsync(sChannel, $"Counter wurde um 1 erhöht. Der aktuelle Counter beträgt {nCounter}");
                         break;
-                    case "mod":
-                        Console.WriteLine("Added Mod / deleted mod");
-                        await Connection.oClient.SendMessageAsync(sChannel, $"/mod {sAddModName}");
+                    case "addtimer":
+                        vsCommands = oOnChatCommandReceivedArgs.Command.ArgumentsAsList;
+                        foreach (string sItem in vsCommands)
+                        {
+                            Console.WriteLine($"List Elements: {sItem}");
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Unknown command");
                         break;
                 }
             }
